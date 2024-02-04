@@ -92,6 +92,20 @@ Examples :
 #define FRIENDLY_NAME          "TV"         // [FriendlyName] Friendlyname up to 32 characters used by webpages and Alexa
 #define EMULATION              EMUL_WEMO         // [Emulation] Select Belkin WeMo (single relay/light) or Hue Bridge emulation (multi relay/light) (EMUL_NONE, EMUL_WEMO or EMUL_HUE)
 
+
+#ifdef MODULE
+#undef MODULE
+#endif
+#define MODULE                 USER_MODULE   // [Module] Select default model (the list is kModuleNiceList() in file tasmota_template.h) USER_MODULE is the TEMPLATE
+
+#ifdef FALLBACK_MODULE
+#undef FALLBACK_MODULE
+#endif
+#define FALLBACK_MODULE        USER_MODULE   // to Select the default model as FALLBACK when the user does a RESET 1 
+
+#ifdef USER_TEMPLATE
+#undef USER_TEMPLATE
+#endif
 #define USER_TEMPLATE "{\"NAME\":\"HDMI CEC\",\"GPIO\":[1,1,9824,1,640,608,1,1,1,1,1,1,224,1],\"FLAG\":0,\"BASE\":18}"  // [Template] Set JSON template
 
 #undef USER_RULE1
