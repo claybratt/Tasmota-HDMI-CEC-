@@ -90,7 +90,7 @@ Examples :
 #define USE_HDMI_CEC
 
 #define FRIENDLY_NAME          "TV"         // [FriendlyName] Friendlyname up to 32 characters used by webpages and Alexa
-#define EMULATION              EMUL_WEMO         // [Emulation] Select Belkin WeMo (single relay/light) or Hue Bridge emulation (multi relay/light) (EMUL_NONE, EMUL_WEMO or EMUL_HUE)
+#define EMULATION              EMUL_HUE         // [Emulation] Select Belkin WeMo (single relay/light) or Hue Bridge emulation (multi relay/light) (EMUL_NONE, EMUL_WEMO or EMUL_HUE)
 
 
 #ifdef MODULE
@@ -106,10 +106,15 @@ Examples :
 #ifdef USER_TEMPLATE
 #undef USER_TEMPLATE
 #endif
-#define USER_TEMPLATE "{\"NAME\":\"HDMI CEC\",\"GPIO\":[1,1,9824,1,640,608,1,1,1,1,1,1,224,1],\"FLAG\":0,\"BASE\":18}"  // [Template] Set JSON template
+#define USER_TEMPLATE "{\"NAME\":\"HDMI CEC\",\"GPIO\":[1,1,9824,1,640,608,1,1,1,1,1,225,224,1],\"FLAG\":0,\"BASE\":18}"  // [Template] Set JSON template
 
 #undef USER_RULE1
 #define USER_RULE1 "on Power1#state=1 do HdmiSend 04 endon on Power1#state=0 do HdmiSend 36 endon"
-#define USER_BACKLOG "Rule1 1"
+
+#undef USER_RULE2
+#define USER_RULE2 "on Power2#state=1 do HdmiSend 66 endon on Power2#state=0 do HdmiSend 65 endon"
+
+#define USER_BACKLOG "Rule1 1;Rule2 1;FriendlyName2 Sound"
+
 
 #endif  // _USER_CONFIG_OVERRIDE_H_
